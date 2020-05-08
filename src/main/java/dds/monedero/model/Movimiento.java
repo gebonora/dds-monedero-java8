@@ -37,11 +37,11 @@ public class Movimiento {
 
   public boolean isDeposito() {
     return esDeposito;
-  }
+  } //no agrega comportamiento, Misplaced Method
 
   public boolean isExtraccion() {
     return !esDeposito;
-  }
+  } // igual que arriba
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
