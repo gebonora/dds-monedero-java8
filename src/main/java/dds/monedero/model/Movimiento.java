@@ -25,7 +25,7 @@ public class Movimiento {
 
   public boolean fueDepositado(LocalDate fecha) {
     return isDeposito() && esDeLaFecha(fecha);
-  }
+  } //no se usa0
 
   public boolean fueExtraido(LocalDate fecha) {
     return isExtraccion() && esDeLaFecha(fecha);
