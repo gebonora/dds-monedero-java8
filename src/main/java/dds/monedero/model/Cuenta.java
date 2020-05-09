@@ -26,17 +26,10 @@ public class Cuenta {
     this.movimientos = movimientos;
   }
 
-  public void poner(double cuanto) { //poner y sacar long method. se puede sacar validaciones
+  public void poner(double cuanto) {
     validarMontoPositivo(cuanto);
     validarCantidadDepositosDiarios();
-
     new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
-  }
-
-  public void validarCantidadDepositosDiarios() {
-    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) { // feature envy a movimientos? parece que no
-      throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
-    }
   }
 
   public void sacar(double cuanto) {
@@ -52,6 +45,12 @@ public class Cuenta {
     }
   }
 
+  public void validarCantidadDepositosDiarios() {
+    if (getMovimientos().stream().filter(movimiento -> movimiento.isDeposito()).count() >= 3) { // feature envy a movimientos? parece que no
+      throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
+    }
+  }
+
   public void validarExtraccionMaximaDiaria(double cuanto) {
     double montoExtraidoHoy = getMontoExtraidoA(LocalDate.now());
     double limite = 1000 - montoExtraidoHoy;
@@ -61,9 +60,8 @@ public class Cuenta {
     }
   }
 
-  public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {
-    Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
-    movimientos.add(movimiento);
+  public void agregarMovimiento(Movimiento movimiento) {
+       movimientos.add(movimiento);
   }
 
   public void validarMontoPositivo(double cuanto) {
