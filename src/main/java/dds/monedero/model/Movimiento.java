@@ -35,9 +35,8 @@ public abstract class Movimiento {
     return this.fecha.equals(fecha);
   }
 
-  public boolean isDeposito() {
-    return esDeposito;
-  } //no agrega comportamiento, Misplaced Method
+  public abstract boolean isDeposito() //no agrega comportamiento, Misplaced Method
+  ;
 
   public boolean isExtraccion() {
     return !esDeposito;
@@ -48,11 +47,5 @@ public abstract class Movimiento {
     cuenta.agregarMovimiento(this);
   }
 
-  public double calcularValor(Cuenta cuenta) {
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
-  }
+  public abstract double calcularValor(Cuenta cuenta);
 }
