@@ -29,14 +29,14 @@ public class Cuenta {
   public void poner(double cuanto) {
     validarMontoPositivo(cuanto);
     validarCantidadDepositosDiarios();
-    new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
+    new Deposito(LocalDate.now(), cuanto, true).agregateA(this);
   }
 
   public void sacar(double cuanto) {
     validarMontoPositivo(cuanto);
     validarSaldoMaximo(cuanto);
     validarExtraccionMaximaDiaria(cuanto);
-    new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
+    new Extraccion(LocalDate.now(), cuanto, false).agregateA(this);
   }
 
   public void validarSaldoMaximo(double cuanto) {
