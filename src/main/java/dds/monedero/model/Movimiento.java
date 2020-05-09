@@ -9,10 +9,9 @@ public abstract class Movimiento {
   private double monto;
   private boolean esDeposito;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  public Movimiento(LocalDate fecha, double monto) {
     this.fecha = fecha;
     this.monto = monto;
-    this.esDeposito = esDeposito;
   }
 
   public double getMonto() {
@@ -23,24 +22,11 @@ public abstract class Movimiento {
     return fecha;
   }
 
-  public boolean fueDepositado(LocalDate fecha) {
-    return isDeposito() && esDeLaFecha(fecha);
-  } //no se usa0
-
-  public boolean fueExtraido(LocalDate fecha) {
-    return isExtraccion() && esDeLaFecha(fecha);
-  }
-
   public boolean esDeLaFecha(LocalDate fecha) {
     return this.fecha.equals(fecha);
   }
 
-  public abstract boolean isDeposito() //no agrega comportamiento, Misplaced Method
-  ;
-
-  public boolean isExtraccion() {
-    return !esDeposito;
-  } // igual que arriba
+  public abstract boolean isExtraccion();
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));

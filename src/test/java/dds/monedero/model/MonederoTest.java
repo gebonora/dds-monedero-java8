@@ -34,7 +34,7 @@ public class MonederoTest {
     cuenta.poner(1500);
     cuenta.poner(456);
     cuenta.poner(1900);
-    Assert.assertEquals(cuenta.getSaldo(),1500+456+1900,0);
+    Assert.assertEquals(cuenta.getSaldo(),3856,0);
   }
 
   @Test(expected = MaximaCantidadDepositosException.class)
@@ -66,13 +66,11 @@ public class MonederoTest {
   @Test(expected = MontoNegativoException.class)
   public void PonerCero() {
     cuenta.poner(0);
-    Assert.assertEquals(cuenta.getSaldo(),0,0);
   }
 
   @Test(expected = MontoNegativoException.class)
   public void SacarCero() {
     cuenta.sacar(0);
-    Assert.assertEquals(cuenta.getSaldo(),0,0);
   }
 
   @Test
